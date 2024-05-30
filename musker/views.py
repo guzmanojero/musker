@@ -49,13 +49,13 @@ def profile(request, pk):
         meeps = Meep.objects.filter(user_id=pk).order_by("-created_at")
         context = {"my_profile": my_profile, "meeps": meeps}
 
-        print(my_profile)
+        # print(my_profile)
 
         if request.method == "POST":
             current_user_profile = request.user.profile
             action = request.POST["follow-btn"]  # follow-btn is the name of the button
 
-            print(action)  # returns value of follow-btn button (follow or unfollow)
+            # print(action)  # returns value of follow-btn button (follow or unfollow)
 
             if action == "unfollow":
                 current_user_profile.follows.remove(my_profile)
@@ -76,7 +76,7 @@ def profile_list(request):
         profiles = profiles.annotate(num_images=Count("profile_image")).order_by(
             "-num_images"
         )
-        print(profiles)
+        # print(profiles)
         context = {"profiles": profiles}
 
         return render(request, "profile_list.html", context)
@@ -109,8 +109,8 @@ def follows_list(request, pk):
         if request.user.id == pk:
             my_profile = Profile.objects.get(user_id=pk)
             context = {"my_profile": my_profile}
-            print(my_profile)
-            print(my_profile.follows.all())
+            # print(my_profile)
+            # print(my_profile.follows.all())
             return render(request, "follows_list.html", context=context)
         else:
             messages.success(request, "You can only see your followers, bitch!")
@@ -237,9 +237,9 @@ def meep_search(request):
         # search = request.POST.get("search")
 
         if search:
-            print(f"Search: {search}")
+            # print(f"Search: {search}")
             meeps = Meep.objects.filter(body__contains=search)
-            print(f"data: {meeps}")
+            # print(f"data: {meeps}")
             context = {"search": search, "meeps": meeps}
             return render(request, "meep_search.html", context)
         else:
@@ -255,11 +255,11 @@ def user_search(request):
     if request.method == "POST":
         search = request.POST["search"]
         if search:
-            print(f"Search: {search}")
+            # print(f"Search: {search}")
             # users = User.objects.filter(username__contains=search)
             # print(f"data: {users}")
             profiles = Profile.objects.filter(user__username__contains=search)
-            print(profiles)
+            # print(profiles)
             # context = {"search": search, "users": users}
             context = {"search": search, "profiles": profiles}
             return render(request, "user_search.html", context)

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<h1 class="mb-3"> {{request.user.get_username}} is Following</h1>
+
+<!-- FOLLOWING LIST-->
+{% if my_profile %}
+    {% for profile in my_profile.follows.all %}
+    {% include "partials/profile_card.html" %}   
+    {% endfor %}
+{% endif %}
+{% endblock content %}

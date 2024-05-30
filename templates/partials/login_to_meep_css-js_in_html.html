@@ -1,0 +1,42 @@
+<style>
+    /* CSS STYLES */
+    .test-btn {
+        color: rgb(56, 146, 116);
+        background-color: rgb(255, 228, 196);
+        border: 3px solid #5d5c5c;
+        border-radius: 5%;
+        padding: 7px;
+        box-shadow: 3px 3px #b4b3b3;
+    }
+
+    .login-no-decorated {
+        text-decoration: None;
+        transition: 0.4s;
+    }
+
+    .login-no-decorated:hover {
+        background-color: rgb(236, 195, 139);
+        padding: 5px;
+        font-size: 18px;
+        border-radius: 30%;
+    }
+</style>
+<script>
+    // JavaScript: mouseover //
+    document.addEventListener("DOMContentLoaded", function () {
+        const loginBtn = document.querySelector(".login-no-decorated");
+        const parentBtn = loginBtn.parentElement;
+        parentBtn.style.transition = "box-shadow 0.4s";
+
+        loginBtn.addEventListener("mouseover", function () {
+            parentBtn.style.boxShadow = "7px 7px #b4b3b3";
+        });
+
+        loginBtn.addEventListener("mouseout", function () {
+            parentBtn.style.boxShadow = "3px 3px #b4b3b3";
+        });
+    });
+</script>
+
+<!-- HTML Login URL-->
+<div class="test-btn"><a class="login-no-decorated" href="{% url 'login' %}">Login</a> to meep</div>

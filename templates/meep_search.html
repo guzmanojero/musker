@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<h1 class="mb-4">Search Meeps!</h1>
+<div class="p-0 container">
+    <div class="row">
+        <div class="col-8">            
+            <!-- SEARCH FORM -->         
+            <div class="mb-3">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-5">
+                        {% comment %} <label for="search-meep" class="form-label">Search Meep</label> {% endcomment %}
+                        <input type="input" class="form-control" id="search-meep" placeholder="Search Meep"
+                            name="search">
+                    </div>
+                    <button type="submit" class="btn btn-secondary">Search</button>
+                </form>
+            </div>
+
+
+            <!-- RESULTS -->
+            {% if search %}
+            {% if meeps %}
+            <h3 class="mb-4"> You searched for: "{{ search }}" </h3>
+            <div class="m-3">
+                
+                
+            <!-- MEEPS -->
+            {% for meep in meeps %}
+            {% include "partials/meep.html" %}
+            {% endfor %}
+            {% else %}
+            <h3 class="mb-4"> No results for: "{{ search }}" </h3>
+            {% endif %}
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+

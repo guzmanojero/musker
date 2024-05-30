@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="mt-4 row text-center">
+    <div class="mt-2 col-8">
+        {% if meep %}
+        {% include "partials/meep.html" %}
+        {% else %}
+        <h3 class="mb-4">No meep available</h3>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock content %}

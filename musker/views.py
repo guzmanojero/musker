@@ -28,7 +28,7 @@ def home(request):
 
         meeps = Meep.objects.all().order_by("-created_at")
         username = request.user.get_username()
-        print(username)
+        # print(username)
 
         context = {"meeps": meeps, "form": form}
         return render(request, "home.html", context)

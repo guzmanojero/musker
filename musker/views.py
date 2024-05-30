@@ -393,13 +393,5 @@ def update_user(request):
 
 
 def test_view(request):
-    # username = request.user.get_username()
-    user = request.user
-
-    # print(request.user)
-
-    print(user.profile.profile_image.url)
-
     context = {}
-
     return render(request, "test_view.html", context)

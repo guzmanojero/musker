@@ -37,6 +37,9 @@ DEBUG = env.bool("DEBUG", default=False)
 # ALLOWED_HOSTS = tuple(env.list("ALLOWED_HOSTS", default=[]))
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
 
+# ADMIN URL
+ADMIN_URL = env.str("ADMIN_URL")
+
 
 # Application definition
 

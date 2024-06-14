@@ -1,4 +1,4 @@
-<style>
+<style nonce="{{request.csp_nonce}}">
     /* CSS STYLES */
     .test-btn {
         color: rgb(56, 146, 116);
@@ -21,7 +21,7 @@
         border-radius: 30%;
     }
 </style>
-<script>
+<script nonce="{{request.csp_nonce}}">
     // JavaScript: mouseover //
     document.addEventListener("DOMContentLoaded", function () {
         const loginBtn = document.querySelector(".login-no-decorated");

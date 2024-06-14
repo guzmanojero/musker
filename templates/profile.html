@@ -4,10 +4,17 @@
 
 {% if my_profile %}
 
+<style nonce="{{request.csp_nonce}}">
+    .follow-btn {
+        font-size: x-small;
+        color: #6c757d;
+        text-decoration-line: None;
+    }
+</style>
+
 <h1 class="mb-3 ">{{ my_profile.user.get_username}}'s Profile</h1>
 
-<div class="row text-center">
-    
+<div class="row text-center">    
     <!-- MEEPS -->
     <div class="col-8">
         {% if meeps %}

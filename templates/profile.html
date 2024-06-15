@@ -14,6 +14,10 @@
     .icons-profile{
         color:gray;
     }
+
+    .followers{
+        text-decoration: none;
+    }
 </style>
 
 <h1 class="mb-3 ">{{ my_profile.user.get_username}}'s Profile</h1>
@@ -68,7 +72,7 @@
                 <p class="card-text">
                     {% for following in my_profile.follows.all|slice:4 %}
                 <div>
-                    <a href="{% url 'profile' following.user.id %}" class="text-black" style="text-decoration: none;">@{{following}}</a>
+                    <a href="{% url 'profile' following.user.id %}" class="text-black followers">@{{following}}</a>
                     {% if following in user.profile.follows.all %}
                     <a href="{% url 'unfollow' following.user.id %}" class="follow-btn ">Unfollow</a>
                     {% else %}
@@ -92,7 +96,7 @@
                 <p class="card-text">
                     {% for followed in my_profile.followed_by.all|slice:4 %}
                 <div>
-                    <a href="{% url 'profile' followed.user.id %}" class="text-black" style="text-decoration: none;">@{{followed}}</a>
+                    <a href="{% url 'profile' followed.user.id %}" class="text-black followers">@{{followed}}</a>
                     {% if followed in user.profile.follows.all %}
                     <a href="{% url 'unfollow' followed.user.id %}" class="follow-btn ">Unfollow</a>
                     {% else %}

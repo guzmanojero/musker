@@ -10,6 +10,10 @@
         color: #6c757d;
         text-decoration-line: None;
     }
+
+    .icons-profile{
+        color:gray;
+    }
 </style>
 
 <h1 class="mb-3 ">{{ my_profile.user.get_username}}'s Profile</h1>
@@ -34,20 +38,16 @@
 
         <div class="mb-3">
             {% if my_profile.homepage_link %}
-            <a href="{{ my_profile.homepage_link }}" target="new"><i class="bi bi-link-45deg m-2"
-                    style="color:gray"></i></a>
+            <a href="{{ my_profile.homepage_link }}" target="new"><i class="bi bi-link-45deg m-2 icons-profile"></i></a>
             {% endif %}
             {% if my_profile.facebook_link %}
-            <a href="{{ my_profile.facebook_link }}" target="new"><i class="bi bi-facebook m-2"
-                    style="color:gray"></i></a>
+            <a href="{{ my_profile.facebook_link }}" target="new"><i class="bi bi-facebook m-2 icons-profile"></i></a>
             {% endif %}
             {% if my_profile.instagram_link %}
-            <a href="{{ my_profile.instagram_link }}" target="new"><i class="bi bi-instagram m-2"
-                    style="color:gray"></i></a>
+            <a href="{{ my_profile.instagram_link }}" target="new"><i class="bi bi-instagram m-2 icons-profile"></i></a>
             {% endif %}
             {% if my_profile.linkedin_link %}
-            <a href="{{ my_profile.linkedin_link }}" target="new"><i class="bi bi-linkedin m-2"
-                    style="color:gray"></i></a>
+            <a href="{{ my_profile.linkedin_link }}" target="new"><i class="bi bi-linkedin m-2 icons-profile"></i></a>
             {% endif %}
         </div>
 

@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     "musker",  # app
     # LIBRARIES
     "debug_toolbar",
+    "csp",
 ]
 
 MIDDLEWARE = [
@@ -66,6 +67,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     # LIBRARIES
     "debug_toolbar.middleware.DebugToolbarMiddleware",
+    "csp.middleware.CSPMiddleware",
 ]
 
 ROOT_URLCONF = "social_project.urls"
@@ -155,3 +157,33 @@ INTERNAL_IPS = [
     "127.0.0.1",
     # ...
 ]
+
+
+# CSP DIRECTIVES
+CSP_IMG_SRC = [
+    "'self'",
+    "https://cdn.jsdelivr.net",
+    "http://www.w3.org",
+    "data:",
+]
+CSP_STYLE_SRC = [
+    "'self'",
+    "https://cdn.jsdelivr.net",
+    "http://www.w3.org",
+    "data:",
+]
+
+CSP_SCRIPT_SRC = [
+    "'self'",
+    "https://cdn.jsdelivr.net",
+    "http://www.w3.org",
+    "data:",
+]
+
+CSP_FONT_SRC = [
+    "'self'",
+    "https://cdn.jsdelivr.net",
+    "http://www.w3.org",
+    "data:",
+]
+CSP_INCLUDE_NONCE_IN = ["script-src", "style-src"]

@@ -70,19 +70,21 @@ def profile(request, pk):
 
 
 def profile_list(request):
-    if request.user.is_authenticated:
-        profiles = Profile.objects.exclude(user=request.user)
 
+    if request.user.is_authenticated:
+        print(f" USER: {request.user}")
+        profiles = Profile.objects.exclude(user=request.user)
         profiles = profiles.annotate(num_images=Count("profile_image")).order_by(
             "-num_images"
         )
-        # print(profiles)
-        context = {"profiles": profiles}
 
+        print(f"PROFILES: {profiles}")
+        context = {"profiles": profiles}
         return render(request, "profile_list.html", context)
     else:
-        messages.success(request, "You must be logged in to view this page")
-        return redirect("home")
+        profiles = Profile.objects.all()
+        context = {"profiles": profiles}
+        return render(request, "profile_list.html", context)
 
 
 # **********************

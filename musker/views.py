@@ -49,8 +49,6 @@ def profile(request, pk):
         meeps = Meep.objects.filter(user_id=pk).order_by("-created_at")
         context = {"my_profile": my_profile, "meeps": meeps}
 
-        # print(my_profile)
-
         if request.method == "POST":
             current_user_profile = request.user.profile
             action = request.POST["follow-btn"]  # follow-btn is the name of the button
@@ -70,7 +68,6 @@ def profile(request, pk):
 
 
 def profile_list(request):
-
     if request.user.is_authenticated:
         print(f" USER: {request.user}")
         profiles = Profile.objects.exclude(user=request.user)

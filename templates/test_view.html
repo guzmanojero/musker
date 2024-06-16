@@ -4,23 +4,6 @@
 
 {% block content %}
 <h1>TEST VIEW</h1>
-<br />
-
-{% if user %}
-yes
-<div class="mb-4 mt-4">
-    {% if user.profile.profile_image.url %}
-    yes again!
-    <p>{{user.profile.profile_image.url}}</p>
-    <img src="{{user.profile.profile_image.url}}" class="img-thumbnail w-50 rounded-circle">
-    {% endif %}
-</div>
-
-{% endif %}
-
-
-
-
 
 
 {% endblock content %}

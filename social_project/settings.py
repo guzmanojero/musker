@@ -25,14 +25,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 env = Env()
 env.read_env()
 
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env.str("SECRET_KEY")
 
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG", default=False)
-
 
 # ALLOWED_HOSTS = tuple(env.list("ALLOWED_HOSTS", default=[]))
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
@@ -187,3 +184,16 @@ CSP_FONT_SRC = [
     "data:",
 ]
 CSP_INCLUDE_NONCE_IN = ["script-src", "style-src"]
+
+# SEND EMAIL SETTINGS
+
+ADMINS_EMAIL = env.str("ADMINS_EMAIL")
+ADMINS = [
+    ("Admin Name", ADMINS_EMAIL),
+]
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = env.str("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD")

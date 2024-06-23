@@ -47,10 +47,7 @@ def profile(request, pk):
     my_profile = Profile.objects.get(user_id=pk)
     meeps = Meep.objects.filter(user_id=pk).order_by("-created_at")
     context = {"my_profile": my_profile, "meeps": meeps}
-
-<<<<<<< HEAD
     print(my_profile)
-
     return render(request, "profile.html", context)
 
 
@@ -59,23 +56,6 @@ def profile_list(request):
     print(profiles)
     context = {"profiles": profiles}
     return render(request, "profile_list.html", context)
-=======
-        if request.method == "POST":
-            current_user_profile = request.user.profile
-            action = request.POST["follow-btn"]  # follow-btn is the name of the button
-
-            # print(action)  # returns value of follow-btn button (follow or unfollow)
-
-            if action == "unfollow":
-                current_user_profile.follows.remove(my_profile)
-            elif action == "follow":
-                current_user_profile.follows.add(my_profile)
-            current_user_profile.save()
-
-        return render(request, "profile.html", context)
-    else:
-        messages.success(request, "You must be logged in to view this page")
-        return redirect("home")
 
 
 def profile_list(request):
@@ -93,7 +73,6 @@ def profile_list(request):
         profiles = Profile.objects.all()
         context = {"profiles": profiles}
         return render(request, "profile_list.html", context)
->>>>>>> e9ea955471a136a91b42e88680b94d943d7f961f
 
 
 # **********************
@@ -404,14 +383,8 @@ def update_user(request):
 
 
 def test_view(request):
-<<<<<<< HEAD
     profile = Profile.objects.get(id=1)
-
     print(profile)
-
     context = {"profile": profile}
-
-=======
     context = {}
->>>>>>> e9ea955471a136a91b42e88680b94d943d7f961f
     return render(request, "test_view.html", context)

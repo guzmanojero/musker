@@ -156,9 +156,8 @@ INTERNAL_IPS = [
     # ...
 ]
 
-<<<<<<< HEAD
+
 # SEND EMAIL SETTINGS
-=======
 
 # CSP DIRECTIVES
 CSP_IMG_SRC = [
@@ -191,7 +190,7 @@ CSP_INCLUDE_NONCE_IN = ["script-src", "style-src"]
 
 # SEND EMAIL SETTINGS
 
->>>>>>> e9ea955471a136a91b42e88680b94d943d7f961f
+
 ADMINS_EMAIL = env.str("ADMINS_EMAIL")
 ADMINS = [
     ("Admin Name", ADMINS_EMAIL),

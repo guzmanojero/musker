@@ -25,17 +25,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 env = Env()
 env.read_env()
 
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env.str("SECRET_KEY")
-
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG", default=False)
 
-
 # ALLOWED_HOSTS = tuple(env.list("ALLOWED_HOSTS", default=[]))
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
+
+# ADMIN URL
+ADMIN_URL = env.str("ADMIN_URL")
 
 
 # Application definition
@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "musker",  # app
     # LIBRARIES
     "debug_toolbar",
+    "csp",
 ]
 
 MIDDLEWARE = [
@@ -63,6 +64,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     # LIBRARIES
     "debug_toolbar.middleware.DebugToolbarMiddleware",
+    "csp.middleware.CSPMiddleware",
 ]
 
 ROOT_URLCONF = "social_project.urls"
@@ -89,14 +91,14 @@ WSGI_APPLICATION = "social_project.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
 
-# DATABASES = {"default": env.dj_db_url("DATABASE_URL")}
+DATABASES = {"default": env.dj_db_url("DATABASE_URL")}
 
 
 # Password validation
@@ -154,7 +156,42 @@ INTERNAL_IPS = [
     # ...
 ]
 
+<<<<<<< HEAD
 # SEND EMAIL SETTINGS
+=======
+
+# CSP DIRECTIVES
+CSP_IMG_SRC = [
+    "'self'",
+    "https://cdn.jsdelivr.net",
+    "http://www.w3.org",
+    "data:",
+]
+CSP_STYLE_SRC = [
+    "'self'",
+    "https://cdn.jsdelivr.net",
+    "http://www.w3.org",
+    "data:",
+]
+
+CSP_SCRIPT_SRC = [
+    "'self'",
+    "https://cdn.jsdelivr.net",
+    "http://www.w3.org",
+    "data:",
+]
+
+CSP_FONT_SRC = [
+    "'self'",
+    "https://cdn.jsdelivr.net",
+    "http://www.w3.org",
+    "data:",
+]
+CSP_INCLUDE_NONCE_IN = ["script-src", "style-src"]
+
+# SEND EMAIL SETTINGS
+
+>>>>>>> e9ea955471a136a91b42e88680b94d943d7f961f
 ADMINS_EMAIL = env.str("ADMINS_EMAIL")
 ADMINS = [
     ("Admin Name", ADMINS_EMAIL),

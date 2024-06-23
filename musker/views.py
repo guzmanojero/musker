@@ -28,7 +28,7 @@ def home(request):
 
         meeps = Meep.objects.all().order_by("-created_at")
         username = request.user.get_username()
-        print(username)
+        # print(username)
 
         context = {"meeps": meeps, "form": form}
         return render(request, "home.html", context)
@@ -48,6 +48,7 @@ def profile(request, pk):
     meeps = Meep.objects.filter(user_id=pk).order_by("-created_at")
     context = {"my_profile": my_profile, "meeps": meeps}
 
+<<<<<<< HEAD
     print(my_profile)
 
     return render(request, "profile.html", context)
@@ -58,6 +59,41 @@ def profile_list(request):
     print(profiles)
     context = {"profiles": profiles}
     return render(request, "profile_list.html", context)
+=======
+        if request.method == "POST":
+            current_user_profile = request.user.profile
+            action = request.POST["follow-btn"]  # follow-btn is the name of the button
+
+            # print(action)  # returns value of follow-btn button (follow or unfollow)
+
+            if action == "unfollow":
+                current_user_profile.follows.remove(my_profile)
+            elif action == "follow":
+                current_user_profile.follows.add(my_profile)
+            current_user_profile.save()
+
+        return render(request, "profile.html", context)
+    else:
+        messages.success(request, "You must be logged in to view this page")
+        return redirect("home")
+
+
+def profile_list(request):
+    if request.user.is_authenticated:
+        print(f" USER: {request.user}")
+        profiles = Profile.objects.exclude(user=request.user)
+        profiles = profiles.annotate(num_images=Count("profile_image")).order_by(
+            "-num_images"
+        )
+
+        print(f"PROFILES: {profiles}")
+        context = {"profiles": profiles}
+        return render(request, "profile_list.html", context)
+    else:
+        profiles = Profile.objects.all()
+        context = {"profiles": profiles}
+        return render(request, "profile_list.html", context)
+>>>>>>> e9ea955471a136a91b42e88680b94d943d7f961f
 
 
 # **********************
@@ -84,8 +120,8 @@ def follows_list(request, pk):
         if request.user.id == pk:
             my_profile = Profile.objects.get(user_id=pk)
             context = {"my_profile": my_profile}
-            print(my_profile)
-            print(my_profile.follows.all())
+            # print(my_profile)
+            # print(my_profile.follows.all())
             return render(request, "follows_list.html", context=context)
         else:
             messages.success(request, "You can only see your followers, bitch!")
@@ -212,9 +248,9 @@ def meep_search(request):
         # search = request.POST.get("search")
 
         if search:
-            print(f"Search: {search}")
+            # print(f"Search: {search}")
             meeps = Meep.objects.filter(body__contains=search)
-            print(f"data: {meeps}")
+            # print(f"data: {meeps}")
             context = {"search": search, "meeps": meeps}
             return render(request, "meep_search.html", context)
         else:
@@ -230,11 +266,11 @@ def user_search(request):
     if request.method == "POST":
         search = request.POST["search"]
         if search:
-            print(f"Search: {search}")
+            # print(f"Search: {search}")
             # users = User.objects.filter(username__contains=search)
             # print(f"data: {users}")
             profiles = Profile.objects.filter(user__username__contains=search)
-            print(profiles)
+            # print(profiles)
             # context = {"search": search, "users": users}
             context = {"search": search, "profiles": profiles}
             return render(request, "user_search.html", context)
@@ -368,10 +404,14 @@ def update_user(request):
 
 
 def test_view(request):
+<<<<<<< HEAD
     profile = Profile.objects.get(id=1)
 
     print(profile)
 
     context = {"profile": profile}
 
+=======
+    context = {}
+>>>>>>> e9ea955471a136a91b42e88680b94d943d7f961f
     return render(request, "test_view.html", context)

@@ -1,8 +1,13 @@
-virt/
+venv/
 .env
 __pycache__/
 db.sqlite3
 db.sqbpro
 .DS_Store
+<<<<<<< HEAD
 media/
 venv/
+=======
+media
+staticfiles/
+>>>>>>> e9ea955471a136a91b42e88680b94d943d7f961f

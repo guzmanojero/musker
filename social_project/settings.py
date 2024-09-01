@@ -135,7 +135,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "static_url/"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
@@ -155,6 +155,8 @@ INTERNAL_IPS = [
     # ...
 ]
 
+
+# SEND EMAIL SETTINGS
 
 # CSP DIRECTIVES
 CSP_IMG_SRC = [
@@ -186,6 +188,7 @@ CSP_FONT_SRC = [
 CSP_INCLUDE_NONCE_IN = ["script-src", "style-src"]
 
 # SEND EMAIL SETTINGS
+
 
 ADMINS_EMAIL = env.str("ADMINS_EMAIL")
 ADMINS = [

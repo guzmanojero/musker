@@ -47,7 +47,6 @@ def profile(request, pk):
     my_profile = Profile.objects.get(user_id=pk)
     meeps = Meep.objects.filter(user_id=pk).order_by("-created_at")
     context = {"my_profile": my_profile, "meeps": meeps}
-    print(my_profile)
     return render(request, "profile.html", context)
 
 

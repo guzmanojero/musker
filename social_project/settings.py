@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     "musker",  # app
     # LIBRARIES
     "debug_toolbar",
-    "csp",
+    # "csp",
 ]
 
 MIDDLEWARE = [
@@ -170,6 +170,7 @@ CSP_STYLE_SRC = [
     "https://cdn.jsdelivr.net",
     "http://www.w3.org",
     "data:",
+    # "'unsafe-inline'",
 ]
 
 CSP_SCRIPT_SRC = [

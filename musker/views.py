@@ -377,6 +377,15 @@ def update_user(request):
 
 
 # **********************
+# ******* ERROS ********
+# **********************
+
+
+def handling_404(request, exception):
+    return render(request, "")
+
+
+# **********************
 # ****** TESTING *******
 # **********************
 

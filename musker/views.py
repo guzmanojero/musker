@@ -6,8 +6,10 @@ from django.contrib.auth.models import User
 from django import forms
 
 from django.shortcuts import get_object_or_404
-from django.http import HttpResponseBadRequest
+
+# from django.http import HttpResponseBadRequest, HttpResponse
 from django.urls import reverse_lazy
+from django import http
 
 from django.db.models import Count
 
@@ -393,8 +395,5 @@ def update_user(request):
 
 
 def test_view(request):
-    profile = Profile.objects.get(id=1)
-    print(profile)
-    context = {"profile": profile}
-    context = {}
-    return render(request, "test_view.html", context)
+
+    raise http.HttpResponseNotFound("error baby")

@@ -381,8 +381,10 @@ def update_user(request):
 # **********************
 
 
-def handling_404(request, exception):
-    return render(request, "")
+# def handling_404(request, exception):
+#     print("*** handling 404 ***")
+#     print(exception)
+#     return render(request, template_name="errors/404.html", status=404)
 
 
 # **********************

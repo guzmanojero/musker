@@ -395,5 +395,6 @@ def update_user(request):
 
 
 def test_view(request):
+    from django.core.exceptions import BadRequest
 
-    raise http.HttpResponseNotFound("error baby")
+    raise BadRequest("Invalid request")

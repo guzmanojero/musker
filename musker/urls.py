@@ -1,5 +1,8 @@
 from django.urls import path
+from django.conf.urls import handler404
+
 from . import views
+from musker.views import handling_404
 
 urlpatterns = [
     path("", views.home, name="home"),
@@ -23,3 +26,7 @@ urlpatterns = [
     path("follow/<int:pk>", views.follow, name="follow"),
     path("test_view/", views.test_view, name="test_view"),
 ]
+
+
+# handler404 = "musker.views.handling_404"
+# handler404 = handling_404

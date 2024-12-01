@@ -7,7 +7,7 @@ from django import forms
 
 from django.shortcuts import get_object_or_404
 
-# from django.http import HttpResponseBadRequest, HttpResponse
+from django.http import HttpResponseBadRequest, HttpResponse
 from django.urls import reverse_lazy
 from django import http
 
@@ -46,8 +46,23 @@ def home(request):
 
 
 def profile(request, pk):
-    my_profile = Profile.objects.get(user_id=pk)
-    meeps = Meep.objects.filter(user_id=pk).order_by("-created_at")
+    if request.user.is_authenticated:
+        my_profile = Profile.objects.get(user_id=pk)
+        meeps = Meep.objects.filter(user_id=pk).order_by("-created_at")
+        current_user_profile = request.user.profile
+
+        if request.method == "POST":
+            action = request.POST.get("follow-btn")
+            print(action)
+            if action == "unfollow":
+                current_user_profile.follows.remove(my_profile)
+            elif action == "follow":
+                current_user_profile.follows.add(my_profile)
+            else:
+                # If the action is neither follow nor unfollow, return a bad request response
+                return HttpResponseBadRequest("Invalid follow action")
+            current_user_profile.save()
+
     context = {"my_profile": my_profile, "meeps": meeps}
     return render(request, "profile.html", context)
 
@@ -395,6 +410,4 @@ def update_user(request):
 
 
 def test_view(request):
-    from django.core.exceptions import BadRequest
-
-    raise BadRequest("Invalid request")
+    return HttpResponse("test view")

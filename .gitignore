@@ -8,4 +8,5 @@ media/
 venv/
 media
 staticfiles/
+t.py
 
